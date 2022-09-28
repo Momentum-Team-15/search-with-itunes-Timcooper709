@@ -1,9 +1,21 @@
 console.log("hello world"); 
-const url = 'https://proxy-itunes-api.glitch.me/search?term=jack+johnson'
+const search = document.createElement('div');
+
+let url = 'https://proxy-itunes-api.glitch.me/search?term='
 
 const dataContainer = document.querySelector("#data_container")
 dataContainer.id = "data"
 
+//adding eventlistener for search
+let userInput = document.querySelector(".search");
+let searchForm = document.querySelector("#search-box");
+
+searchForm.addEventListener("submit", (event) => {
+event.preventDefault();
+let artistNow = userInput.value;
+appleMusicSearch(url);
+
+});
 
 
 
