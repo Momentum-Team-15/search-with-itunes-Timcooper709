@@ -1,11 +1,24 @@
-#music_container {
-    display: flex;
-    flex-direction: row;
-    flex-wrap: wrap;
-    justify-content: space-between;
-
+* {
+    box-sizing: border-box;
+    margin: 0;
 }
 
-#music {
+#music_container {
+    display: flex;
+    
+    flex-wrap: wrap;
+    justify-content: space-between;
+}
+
+#musiccard {
+ display: flex;
+ flex-direction: column;
+ justify-content: center;
+ flex-wrap: wrap;
  
+}
+
+#musiccard.img {
+    width: 50px;
+    
 }

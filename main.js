@@ -1,73 +1,54 @@
-console.log("hello world");
-const search = document.createElement('div');
+console.log("hello")
 
-let input = document.createElement('userInput');
-input.type = 'text';
-search.appendChild(input);
+const musicContainer = document.querySelector("#page_container");
+let musicResults = document.getElementById("music_container");
+const playAudio = document.querySelector("#audioplayer")
+let input = document.getElementById("Band_Name");
+let form = document.getElementById("form");
 
-let searchBaseUrl = 'http://itunes.apple.com/search?term=';
-
-
-
-const dataContainer = document.querySelector("#data_container")
-dataContainer.id = "data"
-
-//adding eventlistener for search
-//let userInput = document.querySelector(".searchBox");
-//let searchForm = document.querySelector("#search-box");
-
-let searchForm = document.querySelector('#search-form')
-searchForm.addEventListener("submit", (event) => {
-   event.preventDefault();
-   console.log('submitted',)
-   let searchBox = document.querySelector('#search-box')
-   let searchUrl = `${searchBaseUrl}${searchBox.value}`
-   console.log(searchUrl)
+form.addEventListener('submit', (event) => {
+    let search = input.value;
+    let url = `https://itunes.apple.com/search?term=${search}&limit=25`;
+    event.preventDefault();
 
 
 
-});
+fetch(url)
+
+    .then(function (response) {
+        return response.json()
+    })
+
+    .then(function (itunesData) {
+        buildResults(itunesData.results);
 
 
-function getSearchResults(url) {
-
-   fetch(url, {
-      method: 'GET',
-      headers: { 'Content-Type': 'application/json' },
-   })
-
-      .then(function (response) {
-         return response.json()
-      })
-   
-
-   .then(function (data) {
-         for (let music of data.results) {
-            console.log(music.trackName)
-            let musicDiv = document.createElement("div");
-            dataContainer.appendChild(musicDiv);
-            musicDiv.id = "data"
-
-            let title = document.createElement("p");
-            title.innerText = `${music.trackName}`;
-            musicDiv.appendChild(title);
-
-            /*  let picture = document.createElement("img");
-               album.innerText = `$(music.picture)`;
-               musicDiv.appendChild(picture)
-               */
+    })
 
 
-         }
-      })
-      
+})
 
 
+function buildResults(musicArray) {
+            for (let data of musicArray) {
+                let itunesDiv = document.createElement("div");
+                itunesDiv.id = "musiccard"
+                let picture = document.createElement("img");
+                let artist = document.createElement("p");
+                // let song = document.createElement("p");
+                
+                picture.src = `${data.artworkUrl60}`;
+                artist.innerText = `${data.artistName}`;
+                itunesDiv.appendChild(picture);
+                itunesDiv.appendChild(artist);
+                itunesDiv.setAttribute("data-preview", data.previewUrl);
+                
+                musicResults.appendChild(itunesDiv);
+                itunesDiv.addEventListener("click", (event) => {
+                    playAudio.src = `${data.previewUrl}`
+                })
+                
+            }
+        }
 
 
-
-
-
-
-
-   }
