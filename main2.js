@@ -40,6 +40,7 @@ function buildResults(musicArray) {
                 artist.innerText = `${data.artistName}`;
                 itunesDiv.appendChild(picture);
                 itunesDiv.appendChild(artist);
+                itunesDiv.setAttribute("data-preview", data.previewUrl);
 
                 musicResults.appendChild(itunesDiv);
 
