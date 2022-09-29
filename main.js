@@ -10,6 +10,7 @@ form.addEventListener('submit', (event) => {
     let search = input.value;
     let url = `https://itunes.apple.com/search?term=${search}&limit=25`;
     event.preventDefault();
+    console.log(input.value);
 
 
 
@@ -33,6 +34,7 @@ function buildResults(musicArray) {
             for (let data of musicArray) {
                 let itunesDiv = document.createElement("div");
                 itunesDiv.id = "musiccard"
+                console.log("music div created")
                 let picture = document.createElement("img");
                 let artist = document.createElement("p");
                 let song = document.createElement("p");
@@ -48,6 +50,7 @@ function buildResults(musicArray) {
                 musicResults.appendChild(itunesDiv);
                 itunesDiv.addEventListener("click", (event) => {
                     playAudio.src = `${data.previewUrl}`
+                    console.log("music sent to player")
                 })
                 
             }
