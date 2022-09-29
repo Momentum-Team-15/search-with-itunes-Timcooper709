@@ -5,7 +5,7 @@
 
 #music_container {
     display: flex;
-    
+    margin: 10px;
     flex-wrap: wrap;
     justify-content: space-between;
 }
@@ -15,7 +15,11 @@
  flex-direction: column;
  justify-content: center;
  flex-wrap: wrap;
- 
+ width: 175px;
+ padding: 25px;
+ align-items: center;
+ align-content: center;
+
 }
 
 #musiccard.img {

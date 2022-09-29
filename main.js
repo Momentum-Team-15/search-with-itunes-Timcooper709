@@ -35,13 +35,15 @@ function buildResults(musicArray) {
                 itunesDiv.id = "musiccard"
                 let picture = document.createElement("img");
                 let artist = document.createElement("p");
-                // let song = document.createElement("p");
+                let song = document.createElement("p");
                 
                 picture.src = `${data.artworkUrl60}`;
                 artist.innerText = `${data.artistName}`;
                 itunesDiv.appendChild(picture);
                 itunesDiv.appendChild(artist);
                 itunesDiv.setAttribute("data-preview", data.previewUrl);
+                song.innerText = `${data.trackName}`;
+                itunesDiv.appendChild(song);
                 
                 musicResults.appendChild(itunesDiv);
                 itunesDiv.addEventListener("click", (event) => {
